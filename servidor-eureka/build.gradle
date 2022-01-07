@@ -18,22 +18,13 @@ ext {
 }
 
 dependencies {
-    //Librerías Web
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    //Librería para centralizar la configuración.
+
+    //librería necesaria para aplicar el autodescubrimiento.
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
+
+    //librería necesaria para utilizar el servidor para centralizar la configuracion
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
-    //Librería para agregar la notificación con Eureka.
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-    //Libreria para la caja de breaker
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
-    //base de datos mysql
-    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.26'
-    //base de datos H2
-    implementation 'com.h2database:h2'
-    //librería log ELK
-    implementation 'net.logstash.logback:logstash-logback-encoder:6.4'
 
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'

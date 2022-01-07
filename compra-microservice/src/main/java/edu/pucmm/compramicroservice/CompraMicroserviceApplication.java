@@ -1,5 +1,4 @@
-package edu.pucmm.microservicioestudiante;
-
+package edu.pucmm.compramicroservice;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixException;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
@@ -30,10 +29,10 @@ import java.sql.SQLException;
 @EnableDiscoveryClient
 @EnableCircuitBreaker
 @SpringBootApplication
-public class UserMicroserviceApplication {
+public class CompraMicroserviceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(UserMicroserviceApplication.class, args);
+        SpringApplication.run(CompraMicroserviceApplication.class, args);
     }
 
     /**
@@ -52,7 +51,7 @@ public class UserMicroserviceApplication {
  * Entidad del Estudiante
  */
 @Entity
-class Estudiante implements Serializable{
+class Estudiante implements Serializable {
 
     @Id
     String matricula;
@@ -98,7 +97,7 @@ class Estudiante implements Serializable{
  */
 //@RepositoryRestResource(collectionResourceRel = "estudiantes", path = "estudiante")
 @Repository
-interface EstudianteRepository extends JpaRepository<Estudiante, Integer>{
+interface EstudianteRepository extends JpaRepository<Estudiante, Integer> {
 
 }
 

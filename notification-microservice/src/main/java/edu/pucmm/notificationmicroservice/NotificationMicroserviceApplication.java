@@ -1,5 +1,4 @@
-package edu.pucmm.microservicioestudiante;
-
+package edu.pucmm.notificationmicroservice;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixException;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
@@ -30,10 +29,10 @@ import java.sql.SQLException;
 @EnableDiscoveryClient
 @EnableCircuitBreaker
 @SpringBootApplication
-public class UserMicroserviceApplication {
+public class NotificationMicroserviceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(UserMicroserviceApplication.class, args);
+        SpringApplication.run(NotificationMicroserviceApplication.class, args);
     }
 
     /**
