@@ -29,11 +29,15 @@ dependencies {
     //Libreria para la caja de breaker
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
     //base de datos mysql
-    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.26'
+    //implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.26'
     //base de datos H2
     implementation 'com.h2database:h2'
     //librería log ELK
     implementation 'net.logstash.logback:logstash-logback-encoder:6.4'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
 
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
