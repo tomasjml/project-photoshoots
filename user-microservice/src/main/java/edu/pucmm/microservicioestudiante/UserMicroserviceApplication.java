@@ -31,79 +31,17 @@ import java.sql.SQLException;
 @EnableCircuitBreaker
 @SpringBootApplication
 public class UserMicroserviceApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(UserMicroserviceApplication.class, args);
     }
-
-    /**
-     * Para subir H2 modo servidor en Spring Boot.
-     * @return
-     * @throws SQLException
-     */
-    /*@Bean(initMethod = "start", destroyMethod = "stop")
-    public Server inMemoryH2DatabaseaServer() throws SQLException {
-        System.out.println("Iniciando Base de datos.");
-        return Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "9092", "-ifNotExists", "-tcpDaemon");
-    }*/
 }
 
-/**
- * Entidad del Estudiante
- */
-@Entity
-class Estudiante implements Serializable{
 
-    @Id
-    String matricula;
-    String nombre;
-    String carrera;
 
-    public String getMatricula() {
-        return matricula;
-    }
 
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getCarrera() {
-        return carrera;
-    }
-
-    public void setCarrera(String carrera) {
-        this.carrera = carrera;
-    }
-
-    @Override
-    public String toString() {
-        return "Estudiante{" +
-                "matricula=" + matricula +
-                ", nombre='" + nombre + '\'' +
-                ", carrera='" + carrera + '\'' +
-                '}';
-    }
-}
-
-/**
- * Configurando la funcionalidad del Data Rest
- */
-//@RepositoryRestResource(collectionResourceRel = "estudiantes", path = "estudiante")
-@Repository
-interface EstudianteRepository extends JpaRepository<Estudiante, Integer>{
-
-}
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/test")
 class AppController{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AppController.class);
@@ -111,7 +49,7 @@ class AppController{
     @RequestMapping("/")
     public String app(HttpServletRequest request){
         LOGGER.info("Consultado la barra");
-        return "Micro Servicio Estudiante por el puerto:"+request.getLocalPort();
+        return "Micro Servicio usuario por el puerto:"+request.getLocalPort();
     }
 
     /**
@@ -139,35 +77,5 @@ class AppController{
 
 }
 
-@RestController
-@RequestMapping("/estudiante/")
-class EstudianteController{
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(EstudianteController.class);
-
-    @Autowired
-    EstudianteRepository estudianteRepository;
-
-    /**
-     *
-     * @return
-     */
-    @GetMapping("/")
-    public List<Estudiante> getListaEstudiante(){
-        Marker marker = new BasicMarkerFactory().getMarker("cantidad_estudiante");
-        List<Estudiante> all = estudianteRepository.findAll();
-        LOGGER.info(marker, ""+all.size());
-        return all;
-    }
-
-    @PostMapping(value = "/")
-    public Estudiante crearEstudiante(@RequestBody Estudiante estudiante){
-        LOGGER.info("Recibido el objeto: "+estudiante);
-        estudianteRepository.save(estudiante);
-        LOGGER.info("Guardando Estudiante: "+estudiante);
-        return estudiante;
-    }
-
-    //omitiendo los demás servicios en el ejemplo
-}
 
