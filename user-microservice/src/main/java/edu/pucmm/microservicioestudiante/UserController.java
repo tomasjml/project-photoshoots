@@ -61,7 +61,7 @@ public class UserController {
     public ResponseEntity<String> deleteUser(@PathVariable("email") String email){
         return userService.deleteUser(email);
     }
-    
+
 
     @CrossOrigin
     @RequestMapping(value = "/login", method = RequestMethod.POST)
