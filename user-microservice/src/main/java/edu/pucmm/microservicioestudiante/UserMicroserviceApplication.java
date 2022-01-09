@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.slf4j.helpers.BasicMarkerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
@@ -23,6 +24,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.sql.SQLException;
@@ -33,6 +35,44 @@ import java.sql.SQLException;
 public class UserMicroserviceApplication {
     public static void main(String[] args) {
         SpringApplication.run(UserMicroserviceApplication.class, args);
+    }
+
+
+    @Bean
+    public CommandLineRunner loadInitialData(UserService userService) {
+        System.out.println("Initializing Data - ");
+
+        return args -> {
+            User newUser = new User(
+                    "admin@mocky.com",
+                    "admin",
+                    "Admin",
+                    Arrays.asList("ROLE_ADMIN"),
+                    true
+
+            );
+            userService.createUser(newUser);
+
+            User newUser2 = new User(
+                    "jtml.mass@gmail.com",
+                    "jtmlmass",
+                    "Tomas",
+                    Arrays.asList("ROLE_ADMIN"),
+                    true
+            );
+            userService.createUser(newUser2);
+
+            User newUser3 = new User(
+                    "test@gmail.com",
+                    "test",
+                    "Test",
+                    Arrays.asList("ROLE_ADMIN"),
+                    true
+            );
+            userService.createUser(newUser3);
+
+            System.out.println("Done initializing Data - ");
+        };
     }
 }
 
