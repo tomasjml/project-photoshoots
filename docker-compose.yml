@@ -103,19 +103,22 @@ services:
       - compra-microservice
       - notification-microservice
 
-  # hystrix-server:
-  #   build: servidor-monitoreo/final
-  #   restart: always
-  #   environment:
-  #     - CONFIG-SERVER=config-server
-  #     - EUREKA-SERVER=eureka-server
-  #     - LOGSTASH-SERVER=logstash
-  #   ports:
-  #     - 4444:4444
-  #   networks:
-  #     - mi-red
-  #   depends_on:
-  #     - user-microservice
+  hystrix-server:
+    build: servidor-monitoreo/final
+    restart: always
+    environment:
+      - CONFIG-SERVER=config-server
+      - EUREKA-SERVER=eureka-server
+      # - LOGSTASH-SERVER=logstash
+    ports:
+      - 4444:4444
+    networks:
+      - mi-red
+    depends_on:
+      - eureka-server
+      - user-microservice
+      - compra-microservice
+      - notification-microservice
 
   # Microservicio de usuarios
   user-db:
