@@ -1,33 +1,20 @@
 package edu.pucmm.microservicioestudiante;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixException;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.Marker;
-import org.slf4j.helpers.BasicMarkerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.servlet.http.HttpServletRequest;
-import java.io.Serializable;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
-import java.sql.SQLException;
 
 @EnableDiscoveryClient
 @EnableCircuitBreaker
@@ -44,7 +31,7 @@ public class UserMicroserviceApplication {
 
         return args -> {
             User newUser = new User(
-                    "admin@mocky.com",
+                    "admin@gmail.com",
                     "admin",
                     "Admin",
                     Arrays.asList("ROLE_ADMIN"),
@@ -54,20 +41,20 @@ public class UserMicroserviceApplication {
             userService.createUser(newUser);
 
             User newUser2 = new User(
-                    "jtml.mass@gmail.com",
-                    "jtmlmass",
-                    "Tomas",
-                    Arrays.asList("ROLE_ADMIN"),
+                    "empleado@gmail.com",
+                    "empleado",
+                    "Empleado",
+                    Arrays.asList("ROLE_EMPLEADO"),
                     true
             );
             userService.createUser(newUser2);
 
             User newUser3 = new User(
-                    "test@gmail.com",
-                    "test",
-                    "Test",
-                    Arrays.asList("ROLE_ADMIN"),
-                    true
+                    "user@gmail.com",
+                    "user",
+                    "User",
+                    Arrays.asList("ROLE_USER"),
+                    false
             );
             userService.createUser(newUser3);
 

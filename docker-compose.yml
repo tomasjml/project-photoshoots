@@ -62,7 +62,7 @@ services:
       - "./archivos-configuracion/config:/archivos-configuracion/config"
 
     healthcheck:
-      test: "curl --fail --silent localhost:8081/actuator/health | grep UP || exit 1"
+      test: "curl --fail --silent localhost:8888/actuator/health | grep UP || exit 1"
       interval: 20s
       timeout: 5s
       retries: 5
@@ -83,7 +83,8 @@ services:
     networks:
       - mi-red
     depends_on: 
-      - config-server
+      config-server:
+        condition: "service_started"
 
   # Servidor Perimetral
   zulu-server:
@@ -103,19 +104,22 @@ services:
       - compra-microservice
       - notification-microservice
 
-  # hystrix-server:
-  #   build: servidor-monitoreo/final
-  #   restart: always
-  #   environment:
-  #     - CONFIG-SERVER=config-server
-  #     - EUREKA-SERVER=eureka-server
-  #     - LOGSTASH-SERVER=logstash
-  #   ports:
-  #     - 4444:4444
-  #   networks:
-  #     - mi-red
-  #   depends_on:
-  #     - user-microservice
+  hystrix-server:
+    build: servidor-monitoreo/final
+    restart: always
+    environment:
+      - CONFIG-SERVER=config-server
+      - EUREKA-SERVER=eureka-server
+      # - LOGSTASH-SERVER=logstash
+    ports:
+      - 4444:4444
+    networks:
+      - mi-red
+    depends_on:
+      - eureka-server
+      - user-microservice
+      - compra-microservice
+      - notification-microservice
 
   # Microservicio de usuarios
   user-db:
