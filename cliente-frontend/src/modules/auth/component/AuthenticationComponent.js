@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../../../logo-dark.png";
+import Logo from "../../core/assets/img/full-logo.png";
 import "../assets/css/AuthenticationComponentStyle.css";
 import { useForm } from "react-hook-form";
 import PropTypes from "prop-types";
@@ -11,19 +11,13 @@ const AuthenticationComponent = ({ onSave }) => {
 		<div className="container container-fluid min-vh-100">
 			<div className="row d-flex justify-content-md-center min-vh-100">
 				<div className="col col-md-6 m-auto">
-					<div className="card">
+					<div className="card bg-dark">
 						<div className="card-body">
 							<main className="form-signin">
 								<form className="text-center" onSubmit={handleSubmit(onSave)}>
 									<div className="row m-4">
 										<div className="col">
-											<img
-												src={Logo}
-												className="d-inline-block align-top"
-												alt="Mocky logo"
-												height="38px"
-												width="150.86px"
-											/>
+											<img src={Logo} className="d-inline-block align-top" alt="Mocky logo" />
 										</div>
 									</div>
 									<div className="row">

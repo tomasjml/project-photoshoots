@@ -1,6 +1,8 @@
 html body {
-    background: rgb(255,255,255);
-    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(56,104,159,1) 100%);
+				background: #96EFFE;
+				background: -webkit-linear-gradient(top right, #96EFFE, #E324FC);
+				background: -moz-linear-gradient(top right, #96EFFE, #E324FC);
+				background: linear-gradient(to bottom left, #96EFFE, #E324FC);
 				overflow: auto;
 				min-height: 100%;
 }
