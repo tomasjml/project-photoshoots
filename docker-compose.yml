@@ -60,6 +60,14 @@ services:
       - mi-red
     volumes:
       - "./archivos-configuracion/config:/archivos-configuracion/config"
+
+    healthcheck:
+      test: "curl --fail --silent localhost:8081/actuator/health | grep UP || exit 1"
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
+
     # depends_on:
     #   - logstash
 
@@ -74,7 +82,7 @@ services:
       - 8761:8761
     networks:
       - mi-red
-    depends_on:
+    depends_on: 
       - config-server
 
   # Servidor Perimetral
@@ -91,6 +99,9 @@ services:
       - mi-red
     depends_on:
       - eureka-server
+      - user-microservice
+      - compra-microservice
+      - notification-microservice
 
   # hystrix-server:
   #   build: servidor-monitoreo/final
@@ -129,6 +140,7 @@ services:
       - db-user
     depends_on:
       - user-db
+      - eureka-server
   
   # Microservicio de compra de eventos
   compra-db:
@@ -153,6 +165,7 @@ services:
       - db-compra
     depends_on:
       - compra-db
+      - eureka-server
   
   # # Microservicio de notificaciones
   notificacion-db:
@@ -177,6 +190,7 @@ services:
       - db-notificacion
     depends_on:
       - notificacion-db
+      - eureka-server
 
 
   # Front-End
