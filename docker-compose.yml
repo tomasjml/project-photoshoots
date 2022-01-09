@@ -129,7 +129,7 @@ services:
       - db-user
     depends_on:
       - user-db
-  
+
   # Microservicio de compra de eventos
   compra-db:
     image: buildo/h2database:2020-12-11
@@ -153,7 +153,7 @@ services:
       - db-compra
     depends_on:
       - compra-db
-  
+
   # # Microservicio de notificaciones
   notificacion-db:
     image: buildo/h2database:2020-12-11
@@ -178,7 +178,6 @@ services:
     depends_on:
       - notificacion-db
 
-
   # Front-End
   # client-web:
   #   build: ./cliente-crud-estudiante/final
@@ -196,3 +195,13 @@ services:
   #     - user-microservice
   #     - compra-microservice
   #     - notificacion-microservice
+
+  #build: ./frontend
+  cliente-frontend:
+    build: ./cliente-frontend
+    container_name: "cliente-frontend"
+    ports:
+      - 3003:3003
+    networks:
+      - mi-red
+    stdin_open: true
