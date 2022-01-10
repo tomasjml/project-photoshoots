@@ -35,6 +35,14 @@ dependencies {
     //librería log ELK
     implementation 'net.logstash.logback:logstash-logback-encoder:6.4'
 
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // https://mvnrepository.com/artifact/org.simplejavamail/simple-java-mail
+    implementation group: 'org.simplejavamail', name: 'simple-java-mail', version: '7.0.0'
+
+
+
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }

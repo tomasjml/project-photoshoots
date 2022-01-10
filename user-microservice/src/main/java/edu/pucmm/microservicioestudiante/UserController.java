@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -28,17 +29,8 @@ public class UserController {
     // Get All
     @CrossOrigin
     @GetMapping("/all")
-    public ResponseEntity<JsonArray> getAllUsers(){
-        JsonArray jsonUsers = null;
-        for(User user: userService.getAllUsers()){
-            JsonObject jsonUser = new JsonObject();
-            jsonUser.addProperty("email", user.getEmail());
-            jsonUser.addProperty("name", user.getName());
-            jsonUser.addProperty("isAdministrator", user.isAdministrator());
-            assert false;
-            jsonUsers.add(jsonUser);
-        }
-        return new ResponseEntity<JsonArray>(jsonUsers, HttpStatus.OK);
+    public List<User> getAllUsers(){
+        return userService.getAllUsers();
     }
 
     // Get One
