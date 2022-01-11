@@ -24,5 +24,6 @@ export const authPath = {
 
 export const userPath = {
 	fetchUsers: () => `${host}/user/all`,
-	addUser: () => `${host}/user/add`
+	addUser: () => `${host}/user/add`,
+	deleteUser: email => `${host}/user/delete/${email}`
 };

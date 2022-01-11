@@ -22,3 +22,14 @@ export const addUser = user => {
 			return Promise.reject(error);
 		});
 };
+
+export const deleteUser = email => {
+	const route = path.deleteUser(email);
+	return restClient(route, "DELETE")
+		.then(function (response) {
+			return Promise.resolve(response);
+		})
+		.catch(error => {
+			return Promise.reject(error);
+		});
+};

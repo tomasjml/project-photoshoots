@@ -110,7 +110,7 @@ const UserManagementComponent = ({ users = [], onDelete, onSave }) => {
 															textCloseButton="Close"
 															textActionButton="Delete"
 															onSave={() => {
-																onDelete(user.name);
+																onDelete(user.email);
 															}}
 														/>
 													</span>

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import UserManagementComponent from "../component/UserManagementComponent";
-import { addUser, fetchUsers } from "../service";
+import { addUser, deleteUser, fetchUsers } from "../service";
 
 /**
  * UserManagementContainer
@@ -28,9 +28,14 @@ const UserManagementContainer = () => {
 		setUsers(await fetchUsers());
 	};
 
+	const onDelete = async email => {
+		await deleteUser(email);
+		setUsers(await fetchUsers());
+	};
+
 	return (
 		<>
-			<UserManagementComponent users={users} onSave={onSave} />
+			<UserManagementComponent users={users} onSave={onSave} onDelete={onDelete} />
 		</>
 	);
 };
