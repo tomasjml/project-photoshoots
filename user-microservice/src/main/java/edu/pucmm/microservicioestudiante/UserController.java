@@ -27,21 +27,18 @@ public class UserController {
     private String secretKey;
 
     // Get All
-    @CrossOrigin
     @GetMapping("/all")
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
 
     // Get One
-    @CrossOrigin
     @GetMapping("/{email}")
     public User getUser(@PathVariable("email") String email){
         return userService.getUser(email);
     }
 
     // Add User
-    @CrossOrigin
     @PostMapping("/add")
     public User postUser(@RequestBody User newUser){
 
@@ -55,7 +52,6 @@ public class UserController {
     }
 
     // Delete User
-    @CrossOrigin
     @DeleteMapping("/delete/{email}")
     public ResponseEntity<String> deleteUser(@PathVariable("email") String email){
         return userService.deleteUser(email);
@@ -77,8 +73,9 @@ public class UserController {
         // JSONObject with the token and the payload username
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("token", token);
+        jsonObject.addProperty("name", user.get().getName());
         jsonObject.addProperty("email", user.get().getEmail());
-        jsonObject.addProperty("roles", user.get().getRoles());
+        jsonObject.addProperty("roles", new Gson().toJson(user.get().getRoles()));
         return new ResponseEntity<>(gson.toJson(jsonObject), HttpStatus.OK);
     }
 

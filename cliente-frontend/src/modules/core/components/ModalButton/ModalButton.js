@@ -73,7 +73,7 @@ ModalButton.propTypes = {
 	classesActionButton: PropTypes.string,
 	styleButton: PropTypes.object,
 	textModalTitle: PropTypes.string,
-	textModalBody: PropTypes.string,
+	textModalBody: PropTypes.any,
 	textCloseButton: PropTypes.string,
 	textActionButton: PropTypes.string,
 	onSave: PropTypes.func

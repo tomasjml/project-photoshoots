@@ -22,8 +22,7 @@ export const authPath = {
 	authUser: () => `${host}/user/login`
 };
 
-export const mockyPath = {
-	fetchMockies: username => `${host}/mock/all/${username}`,
-	deleteMock: id => `${host}/mock/${id}`,
-	createMock: () => `${host}/mock/add`
+export const userPath = {
+	fetchUsers: () => `${host}/user/all`,
+	addUser: () => `${host}/user/add`
 };
