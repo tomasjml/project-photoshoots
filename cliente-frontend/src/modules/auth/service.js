@@ -3,8 +3,7 @@ import { restClient } from "../core/api/restClient";
 
 /**
  * @description Service function for authentication
- * @param {string} username
- * @param {string} password
+ * @param {object} data - data for authentication
  * @returns {Promise<any>}
  */
 export const authUser = data => {

@@ -42,11 +42,7 @@ const getHeaders = () => {
 	//const token = localStorage.getItem("token");
 
 	return {
-		"Content-Type": "application/json",
-		"X-API-AUTH-REQUEST": false,
-		"Access-Control-Allow-Origin": "*",
-		"Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token",
-		"Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS"
+		"Content-Type": "application/json"
 		//"X-API-TOKEN": token
 	};
 	// To enable this part, credentials must be added as parameter

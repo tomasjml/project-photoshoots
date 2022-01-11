@@ -19,7 +19,7 @@ export let serializeURL = function (obj, prefix) {
 };
 
 export const authPath = {
-	authUser: () => `${host}/auth/login`
+	authUser: () => `${host}/user/login`
 };
 
 export const mockyPath = {

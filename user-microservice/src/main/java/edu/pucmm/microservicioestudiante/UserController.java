@@ -55,7 +55,6 @@ public class UserController {
     }
 
 
-    @CrossOrigin
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<String> authenticate(@RequestBody Map<String, String> payload){
         String token = "";
