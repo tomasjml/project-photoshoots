@@ -25,6 +25,14 @@ export const getUsername = () => {
 	return localStorage.getItem("username");
 };
 
+/**
+ * @description Function to get user role information from local browser storage
+ * @returns {string}
+ */
+export const getRole = () => {
+	return localStorage.getItem("role");
+};
+
 // Function to register username and token to the local browser storage
 /**
  * @param {string} username

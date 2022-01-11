@@ -3,7 +3,7 @@ import Logo from "../core/assets/img/logo-side.png";
 import { withTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import { useLocation } from "react-router-dom";
-import { getUsername, logOut } from "../auth/service";
+import { getRole, getUsername, logOut } from "../auth/service";
 import ModalButton from "../core/components/ModalButton/ModalButton";
 
 const NavbarComponent = ({ t }) => {
@@ -34,17 +34,20 @@ const NavbarComponent = ({ t }) => {
 					</li>
 				</ul>
 				<ul className="navbar-nav">
-					<li className="nav-item me-2">
-						{location.pathname !== "/user" ? (
-							<a className="btn btn-secondary" href="/user">
-								Users
-							</a>
-						) : (
-							<button className="btn btn-secondary" disabled>
-								Users
-							</button>
-						)}
-					</li>
+					{getRole() !== "ROLE_USER" && (
+						<li className="nav-item me-2">
+							{location.pathname !== "/user" ? (
+								<a className="btn btn-secondary" href="/user">
+									Users
+								</a>
+							) : (
+								<button className="btn btn-secondary" disabled>
+									Users
+								</button>
+							)}
+						</li>
+					)}
+
 					<li className="nav-item me-2">
 						{location.pathname !== "/sales" ? (
 							<a className="btn btn-secondary" href="/sales">
