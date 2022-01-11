@@ -7,11 +7,12 @@ RUN gradle bootJar --no-daemon
 
 # Utilizando uan imagen con lo necesario para arrancar la aplicación.
 # en Java las imagenes slim son las mas pequeñas en ese tipo.
-FROM openjdk:11.0.12-jre-slim-buster
+FROM openjdk:8-jre-alpine
 # indicando el puerto para exponer, debo pasar el flag -p para habilitarlo o -P para publicarlos todos.
 EXPOSE 8761
 # creando la carpeta para el proyecto
 RUN mkdir /app
+RUN apk --no-cache add curl
 # desde la otra instancia estaremos copiando lo necesario
 COPY --from=build /home/gradle/src/build/libs/*.jar /app/server-eureka.jar
 ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom","-jar","/app/server-eureka.jar"]

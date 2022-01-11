@@ -26,6 +26,25 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
     //Librería de Zuul para servicio perimetral o gateway
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-zuul'
+//    // https://mvnrepository.com/artifact/org.springframework/spring-core
+//    implementation group: 'org.springframework', name: 'spring-core', version: '5.3.14'
+//
+//
+//    // Security
+//    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-core
+//    implementation group: 'org.springframework.security', name: 'spring-security-core', version: '5.6.1'
+//    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-web
+//    implementation group: 'org.springframework.security', name: 'spring-security-web', version: '5.6.1'
+//    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-config
+//    implementation group: 'org.springframework.security', name: 'spring-security-config', version: '5.6.1'
+//
+//
+//    //Library for JWT
+//    // https://mvnrepository.com/artifact/com.auth0/java-jwt
+//    implementation group: 'com.auth0', name: 'java-jwt', version: '3.18.2'
+
+
+
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }

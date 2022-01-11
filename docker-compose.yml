@@ -62,11 +62,10 @@ services:
       - "./archivos-configuracion/config:/archivos-configuracion/config"
 
     healthcheck:
-      test: "curl --fail --silent localhost:8888/actuator/health | grep UP || exit 1"
-      interval: 20s
-      timeout: 5s
-      retries: 5
-      start_period: 40s
+      test: curl --fail --silent localhost:8888/actuator/health | grep UP || exit 1
+      interval: 10s
+      timeout: 2s
+      retries: 10
 
     # depends_on:
     #   - logstash
@@ -83,8 +82,13 @@ services:
     networks:
       - mi-red
     depends_on: 
-      config-server:
-        condition: "service_started"
+      - config-server
+    
+    healthcheck:
+      test: curl --fail --silent eureka-server/actuator/health | grep UP || exit 1
+      interval: 5s
+      timeout: 2s
+      retries: 10
 
   # Servidor Perimetral
   zulu-server:
@@ -99,10 +103,15 @@ services:
     networks:
       - mi-red
     depends_on:
-      - eureka-server
-      - user-microservice
-      - compra-microservice
-      - notification-microservice
+      user-microservice:
+        condition: "service_started"
+      compra-microservice:
+        condition: "service_started"
+      notification-microservice:
+        condition: "service_started"
+      eureka-server:
+        condition: "service_started"
+      
 
   hystrix-server:
     build: servidor-monitoreo/final
@@ -116,10 +125,14 @@ services:
     networks:
       - mi-red
     depends_on:
-      - eureka-server
-      - user-microservice
-      - compra-microservice
-      - notification-microservice
+      user-microservice:
+        condition: "service_started"
+      compra-microservice:
+        condition: "service_started"
+      notification-microservice:
+        condition: "service_started"
+      eureka-server:
+        condition: "service_started"
 
   # Microservicio de usuarios
   user-db:
@@ -143,8 +156,10 @@ services:
       - mi-red
       - db-user
     depends_on:
-      - user-db
-      - eureka-server
+      user-db:
+        condition: "service_started"
+      eureka-server:
+        condition: "service_started"
   
   # Microservicio de compra de eventos
   compra-db:
@@ -168,8 +183,10 @@ services:
       - mi-red
       - db-compra
     depends_on:
-      - compra-db
-      - eureka-server
+      compra-db:
+        condition: "service_started"
+      eureka-server:
+        condition: "service_started"
   
   # # Microservicio de notificaciones
   notificacion-db:
@@ -193,8 +210,10 @@ services:
       - mi-red
       - db-notificacion
     depends_on:
-      - notificacion-db
-      - eureka-server
+      notificacion-db:
+        condition: "service_started"
+      eureka-server:
+        condition: "service_started"
 
   # Front-End
   # client-web:
@@ -210,9 +229,6 @@ services:
   #     - mi-red
   #   depends_on:
   #     - zulu-server
-  #     - user-microservice
-  #     - compra-microservice
-  #     - notificacion-microservice
 
   #build: ./frontend
   cliente-frontend:
