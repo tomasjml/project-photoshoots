@@ -53,6 +53,7 @@ services:
     restart: always
     environment:
       - EUREKA-SERVER=eureka-server
+      - NOTIFICATION_HOST=notification-microservice
       # - LOGSTASH-SERVER=localhost
     ports:
       - 8888:8888
@@ -200,11 +201,13 @@ services:
   notification-microservice:
     build: ./notification-microservice
     restart: always
+    env_file: .env
     environment:
       - CONFIG-SERVER=config-server
       - DB_HOST=notificacion-db
       - DB_PORT=3306
       - EUREKA-SERVER=eureka-server
+      - pass=${KEY}
       # - LOGSTASH-SERVER=logstash
     networks:
       - mi-red

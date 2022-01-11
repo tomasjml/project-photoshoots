@@ -21,7 +21,7 @@ public class NotificationService {
     @Autowired
     private NotificationRepository notificationRepo;
 
-    @Value("${api_key}")
+    @Value("${pass}")
     private String API_KEY;
 
     public List<Notification> getAllByDestination(String destination){
@@ -36,7 +36,7 @@ public class NotificationService {
 
         //Configurando el servidor.
         Mailer mailer = MailerBuilder
-                .withSMTPServer("smtp.sendgrid.net", 587, "apikey", API_KEY)
+                .withSMTPServer("smtp.mailgun.org", 587, "postmaster@rdom.me", API_KEY)
                 .withTransportStrategy(TransportStrategy.SMTP_TLS)
                 .withSessionTimeout(10 * 1000)
                 .clearEmailValidator() // turns off email validation

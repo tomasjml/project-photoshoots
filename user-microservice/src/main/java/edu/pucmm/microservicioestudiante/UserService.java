@@ -22,6 +22,8 @@ public class UserService {
 
     @Value("${strength}")
     private int passwordStrength;
+    @Value("${NOTIFICATION_HOST}")
+    private String NOTIFICATION_HOST;
 
 
 
@@ -51,7 +53,7 @@ public class UserService {
 
         HttpEntity<String> entity = new HttpEntity<>(jsonObject.toString(), headers);
 
-        restTemplate.postForEntity("http://localhost:8080/notification/send/",entity, String.class);
+        restTemplate.postForEntity(NOTIFICATION_HOST,entity, String.class);
 
     }
 
