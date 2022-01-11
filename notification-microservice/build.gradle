@@ -40,6 +40,20 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.simplejavamail/simple-java-mail
     implementation group: 'org.simplejavamail', name: 'simple-java-mail', version: '7.0.0'
+    // https://mvnrepository.com/artifact/com.j2html/j2html
+    implementation group: 'com.j2html', name: 'j2html', version: '1.5.0'
+    // https://mvnrepository.com/artifact/com.sun.mail/jakarta.mail
+    implementation group: 'com.sun.mail', name: 'jakarta.mail', version: '2.0.1'
+    // https://mvnrepository.com/artifact/jakarta.activation/jakarta.activation-api
+    implementation group: 'jakarta.activation', name: 'jakarta.activation-api', version: '2.1.0-RC1'
+
+//    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-webflux
+//    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '2.6.2'
+
+
+
+
+
 
 
 

@@ -29,5 +29,8 @@ public class Notification implements Serializable {
     private String mailTo;
 
     @NonNull @Getter @Setter
+    private String subject;
+
+    @NonNull @Getter @Setter
     private String message;
 }

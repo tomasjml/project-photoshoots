@@ -44,6 +44,13 @@ public class UserController {
     @CrossOrigin
     @PostMapping("/add")
     public User postUser(@RequestBody User newUser){
+
+        userService.sendNotification(newUser.getEmail(),
+                "Welcome " + newUser.getName(),
+                "New User Created: \n\n" +
+                        "Name: " + newUser.getName() + "\n" +
+                        "Email: " + newUser.getEmail());
+
         return userService.createUser(newUser);
     }
 
