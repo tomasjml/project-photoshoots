@@ -3,6 +3,7 @@ import AuthenticationContainer from "./auth/container/AuthenticationContainer";
 import NoMatchRoute from "./core/components/NoMatchRoute/NoMatchRoute";
 import NavBarContainer from "./NavBar/NavBarContainer";
 import UserManagementContainer from "./user/container/UserManagementContainer";
+import SalesContainer from "./sales/container/SalesContainer";
 
 const Routes = () => {
 	return (
@@ -16,6 +17,10 @@ const Routes = () => {
 			<Route path="/user">
 				<NavBarContainer />
 				<UserManagementContainer />
+			</Route>
+			<Route path="/sales">
+				<NavBarContainer />
+				<SalesContainer />
 			</Route>
 			<Route path="*">
 				<NoMatchRoute />

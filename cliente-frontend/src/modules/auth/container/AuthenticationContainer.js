@@ -13,9 +13,10 @@ const AuthenticationContainer = () => {
 	 */
 	const onSave = async data => {
 		try {
-			const response = await authenticateUser({ email: data.username, password: data.password });
-			await setAuthInformation(response.email, response.token);
-			window.location.href = "/user";
+			const response = await authenticateUser({ email: data.username, password: data.password, roles: data.roles });
+			console.log(response);
+			await setAuthInformation(response.email, response.token, JSON.parse(response.roles)[0]);
+			window.location.href = "/sales";
 		} catch (err) {
 			console.log(err);
 		}

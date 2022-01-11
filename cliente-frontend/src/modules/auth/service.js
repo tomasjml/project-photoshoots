@@ -29,10 +29,12 @@ export const getUsername = () => {
 /**
  * @param {string} username
  * @param {string} token
+ * @param {string} role
  */
-export const setAuthInformation = (username, token) => {
+export const setAuthInformation = (username, token, role = "") => {
 	localStorage.setItem("username", username);
 	localStorage.setItem("token", token);
+	localStorage.setItem("role", role);
 };
 
 // Function logout to delete username and token information from the local browser storage
@@ -43,4 +45,5 @@ export const setAuthInformation = (username, token) => {
 export const logOut = () => {
 	localStorage.removeItem("username");
 	localStorage.removeItem("token");
+	localStorage.removeItem("role");
 };

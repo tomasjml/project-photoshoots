@@ -46,6 +46,17 @@ const NavbarComponent = ({ t }) => {
 						)}
 					</li>
 					<li className="nav-item me-2">
+						{location.pathname !== "/sales" ? (
+							<a className="btn btn-secondary" href="/sales">
+								Sales
+							</a>
+						) : (
+							<button className="btn btn-secondary" disabled>
+								Sales
+							</button>
+						)}
+					</li>
+					<li className="nav-item me-2">
 						<div className="input-group mb-3">
 							<input
 								type="text"
