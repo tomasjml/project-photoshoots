@@ -1,23 +1,29 @@
 package edu.pucmm.microservicioestudiante;
 
+import com.google.gson.JsonObject;
+import org.h2.util.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import sun.reflect.generics.tree.ReturnType;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserService {
 
     @Autowired
     private UserRepo repo;
+    @Autowired
+    private RestTemplate restTemplate;
 
     @Value("${strength}")
     private int passwordStrength;
+
+
 
     public List<User> getAllUsers(){return repo.findAll();}
 
@@ -25,7 +31,28 @@ public class UserService {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(this.passwordStrength);
 
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+
         return repo.save(user);
+    }
+
+    public void sendNotification(String email, String subject, String message) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+
+        JsonObject jsonObject = new JsonObject();
+
+
+
+        //Map<String, String> map = new HashMap<>();
+        jsonObject.addProperty("mailTo",email);
+        jsonObject.addProperty("subject",subject);
+        jsonObject.addProperty("message", message);
+
+        HttpEntity<String> entity = new HttpEntity<>(jsonObject.toString(), headers);
+
+        restTemplate.postForEntity("http://localhost:8080/notification/send/",entity, String.class);
+
     }
 
     public User getUser(String email){
