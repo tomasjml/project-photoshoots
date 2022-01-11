@@ -13,9 +13,9 @@ const AuthenticationContainer = () => {
 	 */
 	const onSave = async data => {
 		try {
-			const response = await authenticateUser({ username: data.username, password: data.password });
-			await setAuthInformation(response.username, response.token);
-			window.location.href = "/form";
+			const response = await authenticateUser({ email: data.username, password: data.password });
+			await setAuthInformation(response.email, response.token);
+			window.location.href = "/user";
 		} catch (err) {
 			console.log(err);
 		}

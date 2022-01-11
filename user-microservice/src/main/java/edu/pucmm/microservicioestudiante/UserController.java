@@ -78,6 +78,7 @@ public class UserController {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("token", token);
         jsonObject.addProperty("email", user.get().getEmail());
+        jsonObject.addProperty("roles", user.get().getRoles());
         return new ResponseEntity<>(gson.toJson(jsonObject), HttpStatus.OK);
     }
 

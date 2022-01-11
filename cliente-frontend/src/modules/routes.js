@@ -1,8 +1,8 @@
 import { Redirect, Route, Switch } from "react-router-dom";
 import AuthenticationContainer from "./auth/container/AuthenticationContainer";
-import MockyFormContainer from "./mocky/mockyForm/MockyFormContainer";
-import MockyTableContainer from "./mocky/mockyTable/MockyTableContainer";
 import NoMatchRoute from "./core/components/NoMatchRoute/NoMatchRoute";
+import NavBarContainer from "./NavBar/NavBarContainer";
+import UserManagementContainer from "./user/container/UserManagementContainer";
 
 const Routes = () => {
 	return (
@@ -13,11 +13,9 @@ const Routes = () => {
 			<Route exact path="/">
 				<Redirect to="/auth" />
 			</Route>
-			<Route path="/form">
-				<MockyFormContainer />
-			</Route>
-			<Route path="/table">
-				<MockyTableContainer />
+			<Route path="/user">
+				<NavBarContainer />
+				<UserManagementContainer />
 			</Route>
 			<Route path="*">
 				<NoMatchRoute />
